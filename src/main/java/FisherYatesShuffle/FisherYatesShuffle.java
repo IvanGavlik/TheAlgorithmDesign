@@ -38,6 +38,7 @@ public class FisherYatesShuffle {
      * @param array
      * @return
      */
+    // TODO write tests note MOCK
     public static <ELEMENT> ELEMENT[] shuffle(ELEMENT[] array) {
         int length = array.length;
 
