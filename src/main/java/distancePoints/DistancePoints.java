@@ -1,6 +1,7 @@
 package distancePoints;
 
-import java.util.Arrays;
+import util.RandomNumberService;
+
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,36 +12,28 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class DistancePoints {
 
-    PointService pointService = new PointService();
+    public static final double MAX_DISTANCE = Double.MAX_VALUE;
 
-    private static final int MAX = 1000;
-    private static final int MIN = 0;
-    private static double MAX_DISTANCE = Double.MAX_VALUE;
+    PointService pointService;
 
-    // TODO write tests note MOCK
-    public PointPar calculate(int n) {
-        if(n < 0) {
-            return null;
-        }
+    public DistancePoints(PointService pointService) {
+        this.pointService = pointService;
+    }
 
-        Point[] points = new Point[n];
-        for(int i = 0; i < n; i++) {
-            int randomX = ThreadLocalRandom.current().nextInt(MIN, MAX);
-            int randomY = ThreadLocalRandom.current().nextInt(MIN, MAX);
-            points[i] = new Point(randomX, randomY);
+    public PointPar findSmallestDistance(Point[] points) {
+        if (points == null || points.length < 2) {
+            throw new IllegalArgumentException("There must be at least two points");
         }
 
         PointPar minDistancePointPar = new PointPar(null, null, MAX_DISTANCE);
-        for(int i = 0; i < points.length; i++) {
-            Point start = points[i];
-            for (int j = 0; j < points.length; j++) {
-                Point destination = points[j];
+        for (Point start : points) {
+            for (Point destination : points) {
                 if (start.equals(destination)) {
                     continue;
                 }
                 double distance = this.pointService.calculateDistance(start, destination);
 
-                if(distance < minDistancePointPar.getDistance()) {
+                if (distance < minDistancePointPar.getDistance()) {
                     minDistancePointPar = new PointPar(start, destination, distance);
                 }
             }
@@ -62,15 +55,11 @@ final class PointPar {
         this.distance = distance;
     }
 
-    public Point getFirstPoint() {
-        return firstPoint;
-    }
-
+    public Point getFirstPoint() { return firstPoint;}
 
     public Point getSecondPoint() {
         return secondPoint;
     }
-
 
     public double getDistance() {
         return distance;
@@ -102,6 +91,9 @@ final class PointPar {
 class PointService {
     // sqrt ( (x1+x2)^2 + (y1+y2)^2 )
     double calculateDistance(Point start, Point destination) {
+        if(start == null || destination == null) {
+            throw new IllegalArgumentException("Arguments can not be null");
+        }
         return Math.sqrt(
                 Math.pow( destination.getX() - start.getX(), 2) +
                 Math.pow( destination.getY() - start.getY(), 2)
@@ -110,12 +102,16 @@ class PointService {
 }
 
 final class Point {
+    private static int idCounter = 0;
     final private int x;
     final private int y;
+    final private int id;
 
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+        idCounter += 1;
+        this.id = idCounter;
     }
 
     public int getX() {
@@ -131,12 +127,12 @@ final class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return x == point.x && y == point.y;
+        return id == point.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(id);
     }
 
     @Override
