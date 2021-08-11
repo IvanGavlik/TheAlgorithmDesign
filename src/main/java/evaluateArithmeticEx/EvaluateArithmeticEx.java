@@ -50,27 +50,19 @@ public class EvaluateArithmeticEx {
 
         switch (el) {
             case "+":
-            while (!operands.isEmpty()) {
                 result = operands.pop() + result;
-            }
             break;
 
             case "-":
-                while (!operands.isEmpty()) {
-                    result = operands.pop() - result;
-                }
+                result = operands.pop() - result;
                 break;
 
             case "*":
-                while (!operands.isEmpty()) {
-                    result = operands.pop()  * result;
-                }
+                result = operands.pop()  * result;
                 break;
 
             case "/":
-                while (!operands.isEmpty()) {
-                    result = operands.pop() / result;
-                }
+                result = operands.pop() / result;
                 break;
         }
 
