@@ -1,5 +1,7 @@
 package evaluateArithmeticEx;
 
+import infixToPostfix.InfixToPostfix;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -18,92 +20,63 @@ import java.util.Stack;
  *
  * This code is a simple example of an interpreter.
  *
+ *
  */
 public class EvaluateArithmeticEx {
 
-    public int evaluate(String expression) {
-        List<Token> operans = new ArrayList<>();
-        Stack<Token> operatorStack = new Stack<>();
+    public Double evaluate(String expression) {
 
-        for (String ex : expression.split(" ")) {
-            Token token = TokenService.createToken(ex);
+        Stack<Double> operands = new Stack<>();
+        String postfixEx = new InfixToPostfix().convert(expression);
 
-            switch (token.getTokeType()) {
+        for (String el : postfixEx.split(" ")) {
 
-                case OPERAND:
-
+            Double operand = 0.0;
+            try {
+                operand = Double.parseDouble(el);
+                operands.push(operand);
+            } catch (NumberFormatException exception) {
+                // I have operator
+                Double result = applay(el, operands);
+                operands.push(result);
             }
 
         }
-
-        return 0;
+        return operands.pop();
     }
 
-}
+    private Double applay(String el, Stack<Double> operands) {
+        Double result = operands.pop();
 
-class TokenService {
-    public static Token createToken(String input) {
-        if(input == null || input.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        return new Token(input, TokeType.getType(input));
-    }
+        switch (el) {
+            case "+":
+            while (!operands.isEmpty()) {
+                result = operands.pop() + result;
+            }
+            break;
 
-    public static int getOperatorPrecedence(Token token) {
-        if (token.getTokeType() != TokeType.OPERATOR) {
-            return -1;
-        }
+            case "-":
+                while (!operands.isEmpty()) {
+                    result = operands.pop() - result;
+                }
+                break;
 
-        return switch (token.getValue()) {
-            case "+", "-" -> 1;
-            case "*", "/" -> 2;
-            default -> throw new IllegalArgumentException();
-        };
-    }
-}
+            case "*":
+                while (!operands.isEmpty()) {
+                    result = operands.pop()  * result;
+                }
+                break;
 
-final class Token {
-    private final String value;
-    private final TokeType tokeType;
-
-    public Token(String value, TokeType tokeType) {
-        this.value = value;
-        this.tokeType = tokeType;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public TokeType getTokeType() {
-        return tokeType;
-    }
-
-    @Override
-    public String toString() {
-        return "Token{" +
-                "value=" + value +
-                ", tokeType=" + tokeType +
-                '}';
-    }
-}
-
-enum TokeType {
-    OPERAND,
-    OPERATOR,
-    BRACKET_LEFT,
-    BRACKET_RIGHT;
-
-    public static TokeType getType(String input) {
-        if(input == null || input.isEmpty()) {
-            throw new IllegalArgumentException();
+            case "/":
+                while (!operands.isEmpty()) {
+                    result = operands.pop() / result;
+                }
+                break;
         }
 
-        return switch (input) {
-            case "+", "-", "*", "/" -> OPERATOR;
-            case "(" -> BRACKET_LEFT;
-            case ")" -> BRACKET_RIGHT;
-            default -> OPERAND;
-        };
+        return result;
     }
+
+
 }
+
