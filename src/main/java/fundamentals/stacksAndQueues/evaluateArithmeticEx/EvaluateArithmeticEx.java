@@ -1,9 +1,7 @@
-package evaluateArithmeticEx;
+package fundamentals.stacksAndQueues.evaluateArithmeticEx;
 
-import infixToPostfix.InfixToPostfix;
+import fundamentals.stacksAndQueues.infixToPostfix.InfixToPostfix;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 /**

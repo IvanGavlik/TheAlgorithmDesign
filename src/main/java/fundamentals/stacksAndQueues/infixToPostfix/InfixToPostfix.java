@@ -1,4 +1,4 @@
-package infixToPostfix;
+package fundamentals.stacksAndQueues.infixToPostfix;
 
 
 import java.util.*;

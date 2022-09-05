@@ -1,4 +1,4 @@
-package tsp.simple;
+package fundamentals.stacksAndQueues.simple;
 
 import java.util.Objects;
 

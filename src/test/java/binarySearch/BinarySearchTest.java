@@ -1,9 +1,8 @@
 package binarySearch;
 
+import fundamentals.programmingModel.binarySearch.BinarySearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 public class BinarySearchTest {
 

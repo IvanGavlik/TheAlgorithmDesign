@@ -1,4 +1,4 @@
-package circularRotationString;
+package fundamentals.dataAbstraction.circularRotationString;
 
 /**
 

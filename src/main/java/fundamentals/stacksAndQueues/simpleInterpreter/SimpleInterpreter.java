@@ -1,4 +1,4 @@
-package simpleInterpreter;
+package fundamentals.stacksAndQueues.simpleInterpreter;
 
 import java.util.Stack;
 

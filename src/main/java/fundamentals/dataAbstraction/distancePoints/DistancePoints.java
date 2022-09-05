@@ -1,9 +1,6 @@
-package distancePoints;
-
-import util.RandomNumberService;
+package fundamentals.dataAbstraction.distancePoints;
 
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * takes an integer value N from the command line,

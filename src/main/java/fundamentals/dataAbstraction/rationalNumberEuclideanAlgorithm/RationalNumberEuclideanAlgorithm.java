@@ -1,4 +1,4 @@
-package rationalNumberEuclideanAlgorithm;
+package fundamentals.dataAbstraction.rationalNumberEuclideanAlgorithm;
 
 import java.util.Objects;
 

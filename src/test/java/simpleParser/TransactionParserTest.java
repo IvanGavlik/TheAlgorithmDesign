@@ -1,5 +1,8 @@
 package simpleParser;
 
+import fundamentals.dataAbstraction.simpleParser.DateParser;
+import fundamentals.dataAbstraction.simpleParser.Transaction;
+import fundamentals.dataAbstraction.simpleParser.TransactionParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

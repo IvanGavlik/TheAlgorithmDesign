@@ -1,7 +1,5 @@
-package tsp.simple;
+package fundamentals.stacksAndQueues.simple;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 /**

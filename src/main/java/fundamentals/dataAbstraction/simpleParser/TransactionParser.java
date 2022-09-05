@@ -1,4 +1,4 @@
-package simpleParser;
+package fundamentals.dataAbstraction.simpleParser;
 
 import java.util.Date;
 

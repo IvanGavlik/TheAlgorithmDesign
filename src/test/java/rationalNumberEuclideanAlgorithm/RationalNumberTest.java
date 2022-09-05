@@ -1,5 +1,7 @@
 package rationalNumberEuclideanAlgorithm;
 
+import fundamentals.dataAbstraction.rationalNumberEuclideanAlgorithm.Rational;
+import fundamentals.dataAbstraction.rationalNumberEuclideanAlgorithm.RationalNumber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
