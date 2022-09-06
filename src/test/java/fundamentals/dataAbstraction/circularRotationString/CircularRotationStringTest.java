@@ -1,6 +1,6 @@
 package fundamentals.dataAbstraction.circularRotationString;
 
-import fundamentals.dataAbstraction.distancePoints.circularRotationString.CircularRotationString;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
