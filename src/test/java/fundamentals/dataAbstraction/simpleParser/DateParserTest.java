@@ -1,4 +1,4 @@
-package simpleParser;
+package fundamentals.dataAbstraction.simpleParser;
 
 import fundamentals.dataAbstraction.simpleParser.DateParser;
 import org.junit.jupiter.api.Assertions;

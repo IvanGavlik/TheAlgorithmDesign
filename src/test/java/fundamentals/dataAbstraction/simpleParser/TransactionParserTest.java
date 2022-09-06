@@ -1,4 +1,4 @@
-package simpleParser;
+package fundamentals.dataAbstraction.simpleParser;
 
 import fundamentals.dataAbstraction.simpleParser.DateParser;
 import fundamentals.dataAbstraction.simpleParser.Transaction;

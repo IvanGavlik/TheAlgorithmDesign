@@ -1,9 +1,6 @@
-package distancePoints;
+package fundamentals.dataAbstraction.distancePoints;
 
-import fundamentals.dataAbstraction.distancePoints.DistancePoints;
-import fundamentals.dataAbstraction.distancePoints.Point;
-import fundamentals.dataAbstraction.distancePoints.PointPar;
-import fundamentals.dataAbstraction.distancePoints.PointService;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

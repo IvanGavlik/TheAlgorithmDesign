@@ -1,4 +1,4 @@
-package evaluateArithmeticEx;
+package fundamentals.stacksAndQueues.evaluateArithmeticEx;
 
 import fundamentals.stacksAndQueues.evaluateArithmeticEx.EvaluateArithmeticEx;
 import org.junit.jupiter.api.Assertions;

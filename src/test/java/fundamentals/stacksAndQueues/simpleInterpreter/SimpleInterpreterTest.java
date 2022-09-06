@@ -1,4 +1,4 @@
-package simpleInterpreter;
+package fundamentals.stacksAndQueues.simpleInterpreter;
 
 import fundamentals.stacksAndQueues.simpleInterpreter.SimpleInterpreter;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package rationalNumberEuclideanAlgorithm;
+package fundamentals.dataAbstraction.rationalNumberEuclideanAlgorithm;
 
 import fundamentals.dataAbstraction.rationalNumberEuclideanAlgorithm.DivisorService;
 import org.junit.jupiter.api.Assertions;

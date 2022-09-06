@@ -1,4 +1,4 @@
-package binarySearch;
+package fundamentals.programmingModel.binarySearch;
 
 import fundamentals.programmingModel.binarySearch.BinarySearch;
 import org.junit.jupiter.api.Assertions;

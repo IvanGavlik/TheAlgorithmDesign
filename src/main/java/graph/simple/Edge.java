@@ -1,4 +1,4 @@
-package fundamentals.stacksAndQueues.simple;
+package graph.simple;
 
 import java.util.Objects;
 
