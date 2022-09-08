@@ -47,7 +47,7 @@ public class InfixToPostfix {
      *     3.5 When the input expression has been completely processed, check the operatorStack.
      *          Any operators still on the stack can be removed and appended to the end of the output list.
      *
-     * For moew info @see: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
+     * For more info @see: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
      * @param infix
      * @return postfix
      */

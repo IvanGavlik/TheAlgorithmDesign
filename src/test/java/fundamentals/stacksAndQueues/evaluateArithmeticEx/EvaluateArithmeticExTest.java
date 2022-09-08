@@ -1,6 +1,5 @@
 package fundamentals.stacksAndQueues.evaluateArithmeticEx;
 
-import fundamentals.stacksAndQueues.evaluateArithmeticEx.EvaluateArithmeticEx;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,5 +35,47 @@ public class EvaluateArithmeticExTest {
         Assertions.assertEquals(270, result);
     }
 
-    // TODO add all tests from infixToPostfixTest
+    @Test
+    public void noParenthesis1() {
+        String ex = "10 + 2 * 6";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(22, result);
+    }
+
+    @Test
+    public void noParenthesis2() {
+        String ex = "100 * 2 + 12";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(212, result);
+    }
+    @Test
+    public void evaluateComplexExpression() {
+        String ex = "100 * ( 2 + 12 )";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(1400, result);
+    }
+    @Test
+    public void evaluateComplexExpression2() {
+        String ex = "100 * ( 2 + 12 ) / 14";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(100, result);
+    }
+    @Test
+    public void evaluateComplexExpression3() {
+        String ex = "( ( 20 - 10 ) * ( 30 - 20 ) + 10 ) * 2";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(220, result);
+    }
+    @Test
+    public void evaluateComplexExpression4() {
+        String ex = "( ( 20 - 10 ) * ( 30 - 20 ) / 10 + 10 ) * 2";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(40, result);
+    }
+    @Test
+    public void evaluateComplexExpression5() {
+        String ex = "7 * ( 5 + 15 ) / ( 2 * 5 ) - 3";
+        Double result = this.evaluateArithmeticEx.evaluate(ex);
+        Assertions.assertEquals(11, result);
+    }
 }
