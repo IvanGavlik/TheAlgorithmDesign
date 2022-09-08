@@ -1,40 +1,46 @@
-package fundamentals.stacksAndQueues.concurrentModificationExAtStack;
+package fundamentals.stacksAndQueues.tail;
 
-
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
- * Modify the iterator code in Stack.java to immediately throw a java.util.ConcurrentModificationException if the client modifies the collection (via push() or pop()) during iteration.
+ * Write a program Tail so that Tail k < file.txt prints the last k lines of the file.
  */
-public class ConcurrentModificationExAtStack extends RuntimeException {
+public class Tail {
+    private Stack<String> stack = new Stack<>();
+
+    public Tail(File file) {
+        try(Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+               stack.push(new Node<>(scanner.nextLine()));
+            }
+       } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String[] tail(int n) {
+        if (n <= 0) {
+            throw new RuntimeException("n must be at least 1");
+        }
+        String[] lastN = new String[n];
+        for(int i = 0; i < n; i++) {
+            Node<String> node = stack.pop();
+            if (node != null && node.getValue() != null) {
+                lastN[i] = node.getValue();
+            } else {
+                break;
+            }
+        }
+        return lastN;
+    }
 }
 
-/**
- * Stack data type that has a constructor
- * for the queue linked-list implementation
- *
- * Stack
- * - push(T item) add an item to the start
- * - T pop() remove item from the top
- */
-class Stack<T> implements Iterable<T>{
+class Stack<T> {
 
     private Node<T> root;
-
-    private long count = 0;
-
-    public Stack(Node<T> node) {
-        if(node == null) {
-            throw new RuntimeException("Root can not be null");
-        }
-        this.root = node;
-        this.count += 1;
-    }
-
-    public Iterator<T> iterator() {
-        return new StackIterator<T>(this, count);
-    }
 
     public void push(Node<T> item) {
         if (item == null) {
@@ -47,7 +53,6 @@ class Stack<T> implements Iterable<T>{
             this.root = item;
             this.root.setNext(temRoot);
         }
-        this.count += 1;
     }
 
     public Node<T> pop() {
@@ -62,7 +67,6 @@ class Stack<T> implements Iterable<T>{
         Node<T> root = new Node<>(this.root);
         Node<T> node = root.getNext();
         this.root = node;
-        this.count -= 1;
         return root;
     }
 
@@ -89,37 +93,8 @@ class Stack<T> implements Iterable<T>{
         }
         return sb.toString();
     }
-
-    class StackIterator<T> implements Iterator<T> {
-        private Node<T> current;
-        private Stack stack;
-        private long size;
-
-        public StackIterator(Stack stack, long size) {
-            this.stack = stack;
-            this.current = stack.root;
-            this.size = size;
-        }
-
-        @Override
-        public boolean hasNext() {
-            if (stack.count != size) {
-                throw new ConcurrentModificationExAtStack();
-            }
-            return current != null && current.getValue() != null;
-        }
-
-        @Override
-        public T next() {
-            if (stack.count != size) {
-                throw new ConcurrentModificationExAtStack();
-            }
-            T value = current.getValue();
-            current = current.getNext();
-            return value;
-        }
-    }
 }
+
 
 class Node<T> {
     private T value;
@@ -176,4 +151,5 @@ class Node<T> {
         return "Node " + this.value.toString() + " has next " + this.hasNext();
     }
 }
+
 
