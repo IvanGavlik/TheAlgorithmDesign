@@ -1,0 +1,3 @@
+/marko 12 def
+/test { 10 20 add } def
+test print
