@@ -1,5 +1,7 @@
 package fundamentals.stacksAndQueues.postScriptIntepreter;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Stack;
 
 public class Interpreter {
@@ -53,7 +55,18 @@ public class Interpreter {
         program.pushToCurrentDictionary(key.getData(), value);
     }
     private void print() {
-        System.out.println(program.pullFromOperand().getData());
+        final String data = program.pullFromOperand().getData();
+        if (Application.OUTPUT.isEmpty()) {
+            System.out.println(data);
+        } else {
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(Application.OUTPUT));
+                writer.write(data);
+                writer.close();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
     public PSO getResult() {
         return program.pullFromOperand();

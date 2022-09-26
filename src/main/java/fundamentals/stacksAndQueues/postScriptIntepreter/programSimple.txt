@@ -1,2 +1,0 @@
-/marko 12 def
-marko print
