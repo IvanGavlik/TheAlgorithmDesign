@@ -29,11 +29,29 @@ public class Interpreter {
         if (pso.getName().equals("add")) {
             this.addition();
         }
+        if (pso.getName().equals("sub")) {
+            this.sub();
+        }
+        if (pso.getName().equals("mul")) {
+            this.mul();
+        }
         if (pso.getName().equals("div")) {
             this.div();
         }
-        if (pso.getName().equals("def")) {
-            this.def();
+        if (pso.getName().equals("mod")) {
+            this.mod();
+        }
+        if (pso.getName().equals("abs")) {
+            this.abs();
+        }
+        if (pso.getName().equals("neg")) {
+            this.neg();
+        }
+        if (pso.getName().equals("neg")) {
+            this.neg();
+        }
+        if (pso.getName().equals("sqrt")) {
+            this.sqrt();
         }
         if (pso.getName().equals("print")) {
             this.print();
@@ -43,9 +61,26 @@ public class Interpreter {
     private void addition() {
         program.pushToOperand(MathOperation.add(program.pullFromOperand(), program.pullFromOperand()));
     }
-
+    private void sub() {
+        program.pushToOperand(MathOperation.sub(program.pullFromOperand(), program.pullFromOperand()));
+    }
+    private void mul() {
+        program.pushToOperand(MathOperation.mul(program.pullFromOperand(), program.pullFromOperand()));
+    }
     private void div() {
         program.pushToOperand(MathOperation.div(program.pullFromOperand(), program.pullFromOperand()));
+    }
+    private void mod() {
+        program.pushToOperand(MathOperation.mod(program.pullFromOperand(), program.pullFromOperand()));
+    }
+    private void abs() {
+        program.pushToOperand(MathOperation.abs(program.pullFromOperand()));
+    }
+    private void neg() {
+        program.pushToOperand(MathOperation.neg(program.pullFromOperand()));
+    }
+    private void sqrt() {
+        program.pushToOperand(MathOperation.sqrt(program.pullFromOperand()));
     }
     private void def() {
         PSO value = program.pullFromOperand();
