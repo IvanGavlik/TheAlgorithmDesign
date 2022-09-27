@@ -3,7 +3,15 @@ package fundamentals.stacksAndQueues.postScriptIntepreter;
 import java.io.IOException;
 import java.util.*;
 
-
+/**
+ Goals
+ - write tests (use tutorial and examples)
+ - clearly define language (data types and rest)
+ - read me add description of solution (images)
+ - JVM (heap) simple implementation -> create post about this
+ - use tools for code analysis (static and dynamic) -> create post about this
+ - create post about this task (explain problem and solution)
+ */
 public class Application {
 
     public static String OUTPUT = "";

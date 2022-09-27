@@ -1,5 +1,7 @@
 package fundamentals.stacksAndQueues.postScriptIntepreter;
 
+import java.util.Objects;
+
 public class PSO {
     private String name;
     private String data;
@@ -47,6 +49,19 @@ public class PSO {
 
     public int getLineIndex() {
         return lineIndex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PSO pso = (PSO) o;
+        return literal == pso.literal && lineIndex == pso.lineIndex && tokenIndex == pso.tokenIndex && Objects.equals(name, pso.name) && Objects.equals(data, pso.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, data, literal, lineIndex, tokenIndex);
     }
 
     @Override
