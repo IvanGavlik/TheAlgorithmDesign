@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Scans post script file using post script grammar rules
+ * to create list of {@link PSO} objects which are used by Interpreter to execute script.
+ */
 public class PSScanner {
     private final String DELIMITER = " "; // TODO delimiter can be problematic - strings, and other types of data
     public List<PSO> scan(String path) throws IOException {

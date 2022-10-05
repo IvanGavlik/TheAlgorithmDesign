@@ -2,12 +2,50 @@ package fundamentals.stacksAndQueues.postScriptIntepreter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class Interpreter {
-    Stack<PSO> exe = new Stack<>();
-    ProgramData program = new ProgramDataImpl();
+/**
+ * Executes {@link PSO} object.
+ *
+ * Holds build in operations such as:
+ *  addition, division, multiply, def procedure, print
+ *
+ */
+final class Interpreter {
+    /**
+     * In exe stack is current {@link PSO} object which is being executed.
+     */
+    private Stack<PSO> exe = new Stack<>();
+
+    private ProgramData program = new ProgramDataImpl();
+
+    /**
+     * Returns (and removes) current PSO from operand stack.
+     * In some situations (depends on the contest) can be considered as
+     * result of operation.
+     * Example
+     * After executing 2 2 add {@link Interpreter#getCurrentOperand()} returns
+     * (also removes from stack) result of the add operation (In this case 4)
+     *
+     *
+     * @return current {@link PSO} from operand stack or throw {@link EmptyStackException}
+     */
+    public PSO getCurrentOperand() {
+        return program.pullFromOperand();
+    }
+    /**
+     * Executes {@link PSO} object.
+     *
+     * Execution flow
+     * If {@link PSO} object is literal then it is pushed to operand stack
+     * else find and execute build-in action or declared procedure form
+     * current dictionary using {@link PSO#getName()} as key.
+     *
+     * @param pso
+     */
     public void exe(PSO pso) {
+        // TODO IF pso NULL AND OTHER VALIDATION
         this.exe.push(pso);
         if (pso.isLiteral()) {
             program.pushToOperand(pso);
@@ -17,6 +55,7 @@ public class Interpreter {
         }
         this.exe.pop();
     }
+
 
     private void exeUtil(PSO pso) {
         if (pso instanceof PSOComplex) {
@@ -53,6 +92,12 @@ public class Interpreter {
         if (pso.getName().equals("sqrt")) {
             this.sqrt();
         }
+        if (pso.getName().equals("exp")) {
+            this.exp();
+        }
+        if (pso.getName().equals("def")) {
+            this.def();
+        }
         if (pso.getName().equals("print")) {
             this.print();
         }
@@ -79,6 +124,9 @@ public class Interpreter {
     private void neg() {
         program.pushToOperand(MathOperation.neg(program.pullFromOperand()));
     }
+    private void exp() {
+        program.pushToOperand(MathOperation.exp(program.pullFromOperand(), program.pullFromOperand()));
+    }
     private void sqrt() {
         program.pushToOperand(MathOperation.sqrt(program.pullFromOperand()));
     }
@@ -102,8 +150,5 @@ public class Interpreter {
                 throw new RuntimeException(ex);
             }
         }
-    }
-    public PSO getResult() {
-        return program.pullFromOperand();
     }
 }

@@ -2,7 +2,14 @@ package fundamentals.stacksAndQueues.postScriptIntepreter;
 
 import java.util.Objects;
 
+/**
+ * PSO - Post Script Object
+ */
 public class PSO {
+    /**
+     * Unique identifier.
+     * Used as key in dictionary to fetch procedure, build-in operation, variable ...
+     */
     private String name;
     private String data;
     private boolean literal;
